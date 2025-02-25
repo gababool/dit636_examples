@@ -61,11 +61,11 @@ public class CoffeeMaker {
      * @param amtChocolate
      * @return boolean
      */
-    public synchronized void addInventory(String amtCoffee, String amtMilk, String amtSugar, String amtChocolate) throws InventoryException {
-	    inventory.addCoffee(amtCoffee);
-	    inventory.addMilk(amtMilk);
-	    inventory.addSugar(amtSugar);
-	    inventory.addChocolate(amtChocolate);
+    public synchronized boolean addInventory(String amtCoffee, String amtMilk, String amtSugar, String amtChocolate) throws InventoryException {
+		return inventory.addCoffee(amtCoffee) &&
+				inventory.addMilk(amtMilk) &&
+				inventory.addSugar(amtSugar) &&
+				inventory.addChocolate(amtChocolate);
     }
     
     /**
@@ -83,9 +83,11 @@ public class CoffeeMaker {
      * @param amtPaid
      * @return int
      */
-    public synchronized int makeCoffee(int recipeToPurchase, int amtPaid) {
+    public synchronized int makeCoffee(int recipeToPurchase, int amtPaid) throws Exception {
         int change = 0;
-        
+        if (amtPaid < 0){
+			throw new Exception("Error: Amount paid is negative");
+		}
         if (getRecipes()[recipeToPurchase] == null) {
         	change = amtPaid;
         } else if (getRecipes()[recipeToPurchase].getPrice() <= amtPaid) {

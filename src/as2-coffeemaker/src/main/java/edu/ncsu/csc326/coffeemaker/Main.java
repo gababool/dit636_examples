@@ -232,10 +232,15 @@ public class Main {
         	System.out.println("Please enter a positive integer");
         	mainMenu();
         }
-        
-        int change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
-        
-        if (change == amtPaid) {
+
+		int change = 0;
+		try {
+			change = coffeeMaker.makeCoffee(recipeToPurchase, amtPaid);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+
+		if (change == amtPaid) {
         	System.out.println("Insufficient funds to purchase.");
         } else {
         	System.out.println("Thank you for purchasing " + coffeeMaker.getRecipes()[recipeToPurchase].getName());

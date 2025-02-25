@@ -84,7 +84,7 @@ public class ExampleTest {
 	}
 	
 	@Test
-	public void testMakeCoffee_Normal() {
+	public void testMakeCoffee_Normal() throws Exception {
 		cm.addRecipe(r1);
 		assertEquals(25, cm.makeCoffee(0, 75));
 	}
