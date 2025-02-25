@@ -51,6 +51,7 @@ public class Inventory {
      * to the current amount of chocolate units.
      * @param chocolate
      * @throws InventoryException
+	 * @return true when successful
      */
     public synchronized boolean addChocolate(String chocolate) throws InventoryException {
     	int amtChocolate = 0;
@@ -221,7 +222,7 @@ public class Inventory {
      */
     public synchronized boolean useIngredients(Recipe r) {
     	if (enoughIngredients(r)) {
-	    	Inventory.coffee += r.getAmtCoffee();
+	    	Inventory.coffee -= r.getAmtCoffee();
 	    	Inventory.milk -= r.getAmtMilk();
 	    	Inventory.sugar -= r.getAmtSugar();
 	    	Inventory.chocolate -= r.getAmtChocolate();
