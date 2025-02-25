@@ -61,7 +61,8 @@ public class CoffeeMaker {
      * @param amtChocolate
      * @return boolean
      */
-    public synchronized boolean addInventory(String amtCoffee, String amtMilk, String amtSugar, String amtChocolate) throws InventoryException {
+    public synchronized boolean addInventory(String amtCoffee, String amtMilk, String amtSugar, String amtChocolate)
+			throws InventoryException {
 		return inventory.addCoffee(amtCoffee) &&
 				inventory.addMilk(amtMilk) &&
 				inventory.addSugar(amtSugar) &&
