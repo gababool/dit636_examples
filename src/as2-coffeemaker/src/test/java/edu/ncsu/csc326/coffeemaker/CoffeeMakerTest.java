@@ -199,8 +199,11 @@ public class CoffeeMakerTest {
     @Test
     public void testMakeCoffee_InvalidInput() throws Exception {
         coffeeMaker.addRecipe(r1);
-        assertEquals(coffeeMaker.makeCoffee(0, -40), 40);
-
+        Throwable exception = assertThrows(
+                Exception.class, () -> {
+                    coffeeMaker.makeCoffee(0, -40);
+                }
+        );
     }
 
     // The recipe array should be identical to what is expected, having added four recipes

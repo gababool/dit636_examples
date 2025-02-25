@@ -55,6 +55,10 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String deleteRecipe(int recipeToDelete) {
+		// Check if the index is within bounds
+		if (recipeToDelete < 0 || recipeToDelete >= recipeArray.length) {
+			return null; // Return null if the index is out of bounds
+		}
 		if (recipeArray[recipeToDelete] != null) {
 			String recipeName = recipeArray[recipeToDelete].getName();
 			recipeArray[recipeToDelete] = new Recipe();
@@ -63,7 +67,8 @@ public class RecipeBook {
 			return null;
 		}
 	}
-	
+
+
 	/**
 	 * Returns the name of the recipe edited at the position specified
 	 * and null if the recipe does not exist.
@@ -72,6 +77,10 @@ public class RecipeBook {
 	 * @return String
 	 */
 	public synchronized String editRecipe(int recipeToEdit, Recipe newRecipe) {
+		// Check if the index is within bounds
+		if (recipeToEdit < 0 || recipeToEdit >= recipeArray.length) {
+			return null; // Return null if the index is out of bounds
+		}
 		if (recipeArray[recipeToEdit] != null) {
 			String recipeName = recipeArray[recipeToEdit].getName();
 			newRecipe.setName("");
