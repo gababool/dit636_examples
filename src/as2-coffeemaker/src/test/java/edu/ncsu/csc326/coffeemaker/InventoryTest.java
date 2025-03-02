@@ -86,6 +86,14 @@ public class InventoryTest{
                 }
         );
     }
+    @Test
+    public void testAddChocolate_InvalidAmount()  {
+        Throwable exception = assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addChocolate("F");
+                }
+        );
+    }
 
     @Test
     public void testAddCoffee_Normal() throws InventoryException {
@@ -100,6 +108,15 @@ public class InventoryTest{
                 }
         );
     }
+    @Test
+    public void testAddCoffe_InvalidAmount()  {
+        Throwable exception = assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addCoffee("F");
+                }
+        );
+    }
+
 
     @Test
     public void testAddMilk_Normal() throws InventoryException {
@@ -111,6 +128,14 @@ public class InventoryTest{
         Throwable exception = assertThrows(
                 InventoryException.class, () -> {
                     inventory.addMilk("-5");
+                }
+        );
+    }
+    @Test
+    public void testAddMilk_InvalidAmount()  {
+        Throwable exception = assertThrows(
+                InventoryException.class, () -> {
+                    inventory.addMilk("F");
                 }
         );
     }
@@ -128,6 +153,15 @@ public class InventoryTest{
                 }
         );
     }
+     @Test
+      public void testAddSugar_InvalidAmount()  {
+          Throwable exception = assertThrows(
+                  InventoryException.class, () -> {
+                      inventory.addSugar("F");
+                  }
+          );
+      }
+
 
     @Test
     public void TestEnoughIngredients_Normal(){
@@ -138,6 +172,8 @@ public class InventoryTest{
     public void TestEnoughIngredients_NotEnough(){
         inventory.setSugar(0);
         inventory.setCoffee(1);
+        inventory.setMilk(0);
+        inventory.setChocolate(1);
         assertFalse(inventory.enoughIngredients(recipe));
     }
 

@@ -77,6 +77,7 @@ class RecipeTest {
         assertThrows(RecipeException.class, () -> recipe.setAmtSugar("sugar"));
     }
 
+
     @Test
     void testSetPrice_Valid() throws RecipeException {
         recipe.setPrice("100");
@@ -130,4 +131,29 @@ class RecipeTest {
     void testEquals_DifferentObjectType() {
         assertFalse(recipe.equals("StringCoffee")); // Comparing with a string instead of a Recipe
     }
+
+    @Test //test the ToString actually returns the name.
+    void testToString() {
+        recipe.setName("Coffee");
+        assertEquals("Coffee", recipe.toString());
+    }
+    @Test
+    public void testHashCode_WithName() {
+        Recipe recipe = new Recipe();
+        recipe.setName("Coffee");
+        // Expected hashCode computation: prime * 1 + 0
+        int expected = 31 * 1 + recipe.getName().hashCode();
+        assertEquals(expected, recipe.hashCode());
+    }
+    @Test
+    public void testHashCode_Consistent() {
+        Recipe recipe = new Recipe();
+        recipe.setName("Coffee");
+        // Expected hashCode computation: prime * 1 + 0
+        int hash1 = recipe.hashCode();
+        int hash2 = recipe.hashCode();
+        assertEquals(hash1, hash2); //two hash calls should be equal.
+    }
+
+
 }
