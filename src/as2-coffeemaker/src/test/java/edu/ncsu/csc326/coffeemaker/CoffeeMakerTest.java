@@ -146,7 +146,15 @@ public class CoffeeMakerTest {
     public void testAddInventory_InvalidInput(){
         Throwable exception = assertThrows(
                 InventoryException.class, () -> {
-                    coffeeMaker.addInventory("3", "-1", "hello", "3");
+                    coffeeMaker.addInventory("3", "Boner", "hello", "3");
+                }
+        );
+    }
+    @Test
+    public void testAddInventory_NegativeInput(){
+        Throwable exception = assertThrows(
+                InventoryException.class, () -> {
+                    coffeeMaker.addInventory("-1", "-1", "-1", "-1");
                 }
         );
     }
@@ -182,7 +190,7 @@ public class CoffeeMakerTest {
     }
 
 
-    // Making coffee with a recipe that does not exist shall return all money
+    //Making coffee with a recipe that does not exist shall return all money
     @Test
     public void testMakeCoffee_RecipeDoesNotExist() throws Exception {
         assertEquals(coffeeMaker.makeCoffee(0, 60), 60);
@@ -204,6 +212,12 @@ public class CoffeeMakerTest {
                     coffeeMaker.makeCoffee(0, -40);
                 }
         );
+    }
+
+    @Test
+    public void testMakeCoffee_InsufficientIngredients() throws Exception {
+        coffeeMaker.addRecipe(r2);
+        assertEquals(coffeeMaker.makeCoffee(0, 75), 75);
     }
 
     // The recipe array should be identical to what is expected, having added four recipes

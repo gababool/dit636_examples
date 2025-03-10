@@ -1,0 +1,18 @@
+# Ignore Maven's target directory (compiled classes, JARs)
+target/
+*.class
+*.jar
+
+# Ignore coverage reports and logs
+*.exec
+jacoco.exec
+target/site/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# Ignore OS-generated files
+.DS_Store
+Thumbs.db
