@@ -86,7 +86,7 @@ public class CoffeeMaker {
      */
     public synchronized int makeCoffee(int recipeToPurchase, int amtPaid) throws Exception {
         int change = 0;
-        if (amtPaid < 0){
+        if (amtPaid < undefined){ // MUTANT
 			throw new Exception("Error: Amount paid is negative");
 		}
         if (getRecipes()[recipeToPurchase] == null) {
