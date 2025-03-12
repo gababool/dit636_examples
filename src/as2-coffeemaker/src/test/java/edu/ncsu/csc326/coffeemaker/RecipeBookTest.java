@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import edu.ncsu.csc326.coffeemaker.exceptions.RecipeException;
+
 class RecipeBookTest {
     private RecipeBook recipeBook;
     private Recipe recipe1;
@@ -77,6 +79,34 @@ class RecipeBookTest {
     @Test
     void testEditRecipe_NegativeIndex() {
         assertNull(recipeBook.editRecipe(-1, recipe2));
+    }
+
+    @Test
+    public void testAddRecipe_DuplicateDifferentInstances() throws RecipeException {
+        // Create two separate recipes with identical content
+        Recipe recipe1 = new Recipe();
+        recipe1.setName("Coffee");
+        recipe1.setAmtCoffee("3");
+        recipe1.setAmtMilk("1");
+        recipe1.setAmtSugar("1");
+        recipe1.setAmtChocolate("0");
+        recipe1.setPrice("50");
+
+        Recipe recipe2 = new Recipe();
+        recipe2.setName("Coffee");
+        recipe2.setAmtCoffee("3");
+        recipe2.setAmtMilk("1");
+        recipe2.setAmtSugar("1");
+        recipe2.setAmtChocolate("0");
+        recipe2.setPrice("50");
+
+        CoffeeMaker coffeeMaker = new CoffeeMaker();
+
+        // Add the first recipe
+        assertTrue(coffeeMaker.addRecipe(recipe1));
+
+        // Adding the second recipe should fail
+        assertFalse(coffeeMaker.addRecipe(recipe2));
     }
 
 }
