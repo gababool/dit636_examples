@@ -199,7 +199,7 @@ public class Inventory {
      */
     protected synchronized boolean enoughIngredients(Recipe r) {
         boolean isEnough = true;
-        if(Inventory.coffee < r.getAmtCoffee()) {
+        if(Inventory.coffee <= r.getAmtCoffee()) { // MUTATION
             isEnough = false;
         }
         if(Inventory.milk < r.getAmtMilk()) {
