@@ -29,7 +29,7 @@ public class RecipeBook {
 		boolean exists = false;
 		//Check that recipe doesn't already exist in array
 		for (int i = 0; i < recipeArray.length; i++ ) {
-			if (r.equals(recipeArray[i])) {
+			if (r == recipeArray[i]) {
 				exists = true;
 			}
 		}
