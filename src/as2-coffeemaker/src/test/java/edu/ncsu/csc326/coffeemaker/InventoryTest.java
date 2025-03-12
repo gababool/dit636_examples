@@ -169,6 +169,15 @@ public class InventoryTest{
     }
 
     @Test
+    public void testEnoughIngredients_ExactMatch() {
+        inventory.setCoffee(3);
+        inventory.setMilk(3);
+        inventory.setSugar(3);
+        inventory.setChocolate(3);
+        assertTrue(inventory.enoughIngredients(recipe));
+    }
+
+    @Test
     public void TestEnoughIngredients_NotEnough(){
         inventory.setSugar(0);
         inventory.setCoffee(1);
@@ -192,5 +201,8 @@ public class InventoryTest{
         inventory.setCoffee(1);
         assertFalse(inventory.useIngredients(recipe));
     }
+
+    
+    
 
 }
